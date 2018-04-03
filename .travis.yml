@@ -72,11 +72,13 @@ after_success:
 
 deploy:
   - provider: pages
-    target-branch: ara-$distro
+    target-branch: report-$distro
     skip-cleanup: true
     github-token: $GITHUB_TOKEN
     keep-history: true
     local-dir: output
+    on:
+      branch: ara
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
