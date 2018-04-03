@@ -62,16 +62,17 @@ install:
   - pip install molecule
   - pip install docker-py
   - pip install ara
+  - ansible -i localhost, -m ini_file -a "section=ara option=path value=/etc/ansible/ansible.cfg"
 
 script:
   - if [ "${expectation}" = "fail" ] ; then ! molecule test --scenario-name "${distro}" ; else molecule test --scenario-name "${distro}" ; fi
 
 after_success:
-  - ara generate html output/${version}/${distro}
+  - ara generate html output
 
 deploy:
   - provider: pages
-    target-branch: report
+    target-branch: ara-$distro
     skip-cleanup: true
     github-token: $GITHUB_TOKEN
     keep-history: true
