@@ -71,9 +71,9 @@ after_success:
 
 deploy:
   provider: pages
-  target-branch: ara
+  target-branch: report
   skip-cleanup: true
-  github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
+  github-token: $GITHUB_TOKEN
   keep-history: true
   local-dir: output
   on:
