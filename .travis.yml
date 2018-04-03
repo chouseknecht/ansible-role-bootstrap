@@ -71,15 +71,15 @@ after_success:
   - find / -name '*.sqlite'
   - ara generate html output
 
-deploy:
-  - provider: pages
-    target-branch: report-$distro
-    skip-cleanup: true
-    github-token: $GITHUB_TOKEN
-    keep-history: true
-    local-dir: output
-    on:
-      branch: ara
+# deploy:
+#   - provider: pages
+#     target-branch: report-$distro
+#     skip-cleanup: true
+#     github-token: $GITHUB_TOKEN
+#     keep-history: true
+#     local-dir: output
+#     on:
+#       branch: ara
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
