@@ -67,7 +67,7 @@ script:
   - if [ "${expectation}" = "fail" ] ; then ! molecule test --scenario-name "${distro}" ; else molecule test --scenario-name "${distro}" ; fi
 
 after_success:
-  - ara generate html output
+  - ara generate html output/${version}/${distro}
 
 deploy:
   - provider: pages
