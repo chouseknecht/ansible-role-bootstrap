@@ -62,13 +62,13 @@ install:
   - pip install molecule
   - pip install docker-py
   - pip install ara
-  - ansible -i localhost, all -c local -m ini_file -a "section=ara option=callback_plugins value=/usr/lib/python2.7/site-packages/ara/plugins/callbacks path=./ansible.cfg"
+  - ansible -b -i localhost, all -c local -m ini_file -a "section=ara option=callback_plugins value=/usr/lib/python2.7/site-packages/ara/plugins/callbacks path=/etc/ansible/ansible.cfg"
 
 script:
   - if [ "${expectation}" = "fail" ] ; then ! molecule test --scenario-name "${distro}" ; else molecule test --scenario-name "${distro}" ; fi
 
 after_success:
-  - find / -name '*.sqlite'
+  - find / -name '*.sqlite' 2> /dev/null
   - ara generate html output
 
 # deploy:
