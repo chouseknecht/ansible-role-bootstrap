@@ -61,9 +61,23 @@ install:
   - pip install ansible"${version}"
   - pip install molecule
   - pip install docker-py
+  - pip install ara
 
 script:
   - if [ "${expectation}" = "fail" ] ; then ! molecule test --scenario-name "${distro}" ; else molecule test --scenario-name "${distro}" ; fi
+
+after_success:
+  - ara generate html output
+
+deploy:
+  provider: pages
+  target-branch: ara
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
+  keep-history: true
+  local-dir: output
+  on:
+    branch: master
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

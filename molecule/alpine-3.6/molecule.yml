@@ -12,6 +12,11 @@ platforms:
     image: alpine:3.6
 provisioner:
   name: ansible
+  config_options:
+    defaults:
+      callback_plugins: "/usr/lib/python2.7/site-packages/ara/plugins/callbacks"
+    ara:
+      database: "sqlite://ara.sqlite"
   lint:
     name: ansible-lint
 scenario:
