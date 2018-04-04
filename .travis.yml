@@ -68,11 +68,8 @@ script:
 
 after_success:
   - export ara_location=$(python -c "import os,ara; print(os.path.dirname(ara.__file__))")
-  - echo ${ara_location}
   - ansible -b -i localhost, all -c local -m ini_file -a "section=defaults option=callback_plugins value=${ara_location}/plugins/callbacks path=/etc/ansible/ansible.cfg"
-  - cat /etc/ansible/ansible.cfg
-  - find / -name '*.sqlite' 2> /dev/null
-  - ara generate html output
+  - mkdir -p "output/${distro}" ; cd output ; ara generate html "${distro}"
 
 deploy:
   - provider: pages
