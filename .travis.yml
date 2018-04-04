@@ -70,7 +70,7 @@ after_success:
   - export simpleversion=$(echo $version | cut -d= -f2 | cut -d, -f1)
   - export ara_location=$(python -c "import os,ara; print(os.path.dirname(ara.__file__))")
   - ansible -b -i localhost, all -c local -m ini_file -a "section=defaults option=callback_plugins value=${ara_location}/plugins/callbacks path=/etc/ansible/ansible.cfg"
-  - mkdir -p output ; cd output ; git clone https://github.com/robertdebock/reports.git
+  - mkdir -p output ; cd output ; git clone https://github.com/robertdebock/reports.git ; cd ../
   - mkdir -p "output/${distro}/${simpleversion}" ; cd output/${distro} ; ara generate html "${simpleversion}"
 
 deploy:
