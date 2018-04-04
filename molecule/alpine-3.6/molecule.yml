@@ -14,7 +14,7 @@ provisioner:
   name: ansible
   config_options:
     defaults:
-      callback_plugins: /home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/ara
+      callback_plugins: /home/travis/virtualenv/python2.7.14/lib/python2.7/site-packages/ara/plugins/callbacks
   lint:
     name: ansible-lint
 scenario:
